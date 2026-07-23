@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preventive Care Worksheet — USPSTF A/B/C + Immunizations</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --paper:#E7ECEE;
+  --panel:#FFFFFF;
+  --panel-2:#F4F7F8;
+  --ink:#12212B;
+  --muted:#5C6E79;
+  --faint:#8B9AA3;
+  --rule:#C7D3D9;
+  --rule-soft:#DEE6EA;
+  --petrol:#0C5567;
+  --petrol-tint:#DCEBEF;
+  --amber:#9A5A12;
+  --amber-tint:#F7EBDB;
+  --crimson:#8A2338;
+  --focus:#0C5567;
+  --shadow:0 1px 0 rgba(18,33,43,.04), 0 6px 24px -12px rgba(18,33,43,.22);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Public Sans',system-ui,-apple-system,sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:var(--panel);
+}
+.masthead-in{
+  max-width:1280px;margin:0 auto;padding:22px 24px 18px;
+  display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 4px;
+}
+h1{
+  font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:29px;line-height:1.1;
+  margin:0;letter-spacing:-.015em;
+}
+.masthead p.sub{margin:7px 0 0;color:var(--muted);font-size:13.5px;max-width:56ch}
+.counter{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--rule);background:var(--panel-2);
+  padding:8px 12px;border-radius:2px;white-space:nowrap;line-height:1.5;
+}
+.counter b{color:var(--ink);font-weight:600}
+
+/* ---------- disclaimer strip ---------- */
+.strip{
+  background:var(--amber-tint);border-bottom:1px solid #E4D2B8;
+  font-size:12.5px;color:#5E3A0C;
+}
+.strip-in{max-width:1280px;margin:0 auto;padding:9px 24px;display:flex;gap:9px;align-items:baseline}
+.strip b{font-weight:700}
+
+/* ---------- layout ---------- */
+.layout{
+  max-width:1280px;margin:0 auto;padding:24px;
+  display:grid;grid-template-columns:minmax(320px,400px) 1fr;gap:24px;align-items:start;
+}
+@media(max-width:940px){ .layout{grid-template-columns:1fr;padding:16px;gap:18px} }
+
+/* ---------- intake ---------- */
+.intake{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);position:sticky;top:16px;
+  max-height:calc(100vh - 32px);overflow-y:auto;
+}
+@media(max-width:940px){ .intake{position:static;max-height:none} }
+.intake-head{
+  padding:14px 18px;border-bottom:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  position:sticky;top:0;background:var(--panel);z-index:3;
+}
+.intake-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:16px;margin:0}
+.qgroup{border-bottom:1px solid var(--rule-soft);padding:14px 18px 16px}
+.qgroup:last-child{border-bottom:0}
+.qgroup > .glabel{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 12px;display:block;
+}
+.field{margin-bottom:13px}
+.field:last-child{margin-bottom:0}
+.field > label.flabel{display:block;font-size:12.5px;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.field .hint{font-size:11.5px;color:var(--muted);margin:3px 0 0;line-height:1.45}
+input[type=number],input[type=text],select{
+  width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+  background:var(--panel-2);border:1px solid var(--rule);border-radius:2px;
+  padding:7px 9px;
+}
+input[type=number]:focus,input[type=text]:focus,select:focus{
+  outline:2px solid var(--focus);outline-offset:1px;background:#fff;
+}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+/* segmented control */
+.seg{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.seg button{
+  flex:1;font-family:inherit;font-size:12.5px;font-weight:500;padding:7px 4px;
+  background:var(--panel-2);border:0;border-right:1px solid var(--rule);
+  color:var(--muted);cursor:pointer;
+}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--petrol);color:#fff;font-weight:600}
+.seg button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+
+/* checkbox */
+.chk{display:flex;gap:9px;align-items:flex-start;padding:4px 0;cursor:pointer}
+.chk input{margin:2px 0 0;width:15px;height:15px;accent-color:var(--petrol);flex:none;cursor:pointer}
+.chk span{font-size:13px;line-height:1.4}
+.chk small{display:block;color:var(--muted);font-size:11.5px;line-height:1.4}
+
+/* animated reveal */
+.reveal{animation:slideIn .22s ease-out}
+@keyframes slideIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){ .reveal{animation:none} }
+
+/* derived readout */
+.derived{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+  background:var(--panel-2);border:1px dashed var(--rule);padding:7px 9px;border-radius:2px;
+}
+.derived b{color:var(--ink);font-weight:600}
+
+/* ---------- results ---------- */
+.results{min-width:0}
+.res-head{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  padding:16px 20px;margin-bottom:16px;box-shadow:var(--shadow);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+}
+.tally{display:flex;gap:18px;flex-wrap:wrap}
+.tally div{line-height:1.15}
+.tally .n{font-family:'Fraunces',serif;font-size:26px;font-weight:600;display:block}
+.tally .l{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  font-family:inherit;font-size:12.5px;font-weight:600;padding:8px 13px;cursor:pointer;
+  background:var(--panel-2);color:var(--ink);border:1px solid var(--rule);border-radius:2px;
+}
+.btn:hover{background:#fff;border-color:var(--petrol)}
+.btn:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.btn.primary{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.btn.primary:hover{background:#0A4655}
+
+.section{margin-bottom:26px}
+.section > h2{
+  font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin:0 0 3px;
+  display:flex;align-items:baseline;gap:9px;
+}
+.section > h2 .ct{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);font-weight:400}
+.section > p.snote{margin:0 0 12px;font-size:12.5px;color:var(--muted);max-width:78ch}
+
+/* recommendation card — signature: grade rail + audit trail */
+.rec{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  display:grid;grid-template-columns:58px 1fr;margin-bottom:9px;overflow:hidden;
+}
+.rail{
+  border-right:1px solid var(--rule-soft);background:var(--panel-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding:12px 4px;gap:3px;
+}
+.rail .g{
+  font-family:'Fraunces',serif;font-size:25px;font-weight:600;line-height:1;
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:2px;
+}
+.rec[data-grade=A] .rail .g{background:var(--petrol);color:#fff}
+.rec[data-grade=B] .rail .g{background:var(--petrol-tint);color:var(--petrol);box-shadow:inset 0 0 0 1.5px var(--petrol)}
+.rec[data-grade=C] .rail .g{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--rule)}
+.rail .yr{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--faint)}
+.rbody{padding:12px 16px 13px;min-width:0}
+.rbody h3{font-size:14.5px;font-weight:700;margin:0 0 4px;line-height:1.3}
+.rbody .act{margin:0;font-size:13.5px;line-height:1.5}
+.rbody .ivl{
+  margin:7px 0 0;font-size:12.5px;color:var(--petrol);font-weight:600;
+}
+.trigger{
+  margin-top:9px;padding-top:8px;border-top:1px dotted var(--rule);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:5px 0;align-items:center;
+}
+.trigger .tl{color:var(--faint);margin-right:7px}
+.trigger .chip{
+  background:var(--panel-2);border:1px solid var(--rule-soft);border-radius:2px;
+  padding:1px 6px;margin-right:5px;color:var(--ink);
+}
+.rbody a.src{
+  display:inline-block;margin-top:8px;font-size:11.5px;color:var(--petrol);
+  font-family:'IBM Plex Mono',monospace;text-decoration:none;border-bottom:1px solid var(--petrol-tint);
+}
+.rbody a.src:hover{border-bottom-color:var(--petrol)}
+
+/* vaccine card */
+.vac{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  padding:12px 16px;margin-bottom:9px;
+}
+.vac h3{font-size:14.5px;font-weight:700;margin:0 0 4px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:2px;font-weight:600;
+}
+.tag.routine{background:var(--petrol);color:#fff}
+.tag.risk{background:var(--petrol-tint);color:var(--petrol)}
+.tag.scdm{background:var(--panel-2);color:var(--muted);box-shadow:inset 0 0 0 1px var(--rule)}
+.vac p{margin:0;font-size:13.5px;line-height:1.5}
+.divergence{
+  margin-top:9px;background:var(--amber-tint);border-left:3px solid var(--amber);
+  padding:8px 11px;font-size:12px;color:#5E3A0C;line-height:1.45;
+}
+.divergence b{font-weight:700}
+
+/* near-miss + empty */
+.near{
+  background:var(--panel-2);border:1px dashed var(--rule);border-radius:3px;padding:11px 15px;
+  font-size:12.5px;color:var(--muted);margin-bottom:8px;
+}
+.near b{color:var(--ink);font-weight:600}
+.empty{
+  background:var(--panel);border:1px dashed var(--rule);border-radius:3px;
+  padding:34px 24px;text-align:center;color:var(--muted);font-size:13.5px;
+}
+details.foot{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:12px 16px;margin-bottom:9px;
+}
+details.foot summary{
+  cursor:pointer;font-weight:600;font-size:13px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+}
+details.foot summary::-webkit-details-marker{display:none}
+details.foot summary::after{content:'+';font-family:'IBM Plex Mono',monospace;color:var(--faint)}
+details.foot[open] summary::after{content:'\2212'}
+details.foot .dbody{margin-top:11px;font-size:12.5px;color:var(--muted);line-height:1.6}
+details.foot .dbody ul{margin:6px 0;padding-left:18px}
+details.foot .dbody li{margin-bottom:5px}
+
+footer.page{
+  max-width:1280px;margin:0 auto;padding:8px 24px 40px;
+  font-size:11.5px;color:var(--faint);line-height:1.6;
+}
+footer.page a{color:var(--muted)}
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:10px 18px;border-radius:2px;
+  font-size:13px;box-shadow:0 8px 30px -8px rgba(0,0,0,.5);z-index:50;
+}
+
+@media print{
+  body{background:#fff}
+  .intake,.actions,.strip,.counter{display:none!important}
+  .layout{display:block;padding:0;max-width:none}
+  .rec,.vac,.res-head,details.foot{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div>
+      <p class="eyebrow">Point-of-care worksheet</p>
+      <h1>Preventive care, assembled from the patient</h1>
+      <p class="sub">Enter only what changes the answer. Every recommendation shows the inputs that triggered it, so you can audit the logic rather than trust it.</p>
+    </div>
+    <div class="counter" id="counter">loading…</div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="strip-in">
+    <b>Decision support, not a decision.</b>
+    <span>Verify against the primary recommendation before acting. Screening intervals, prior results, life expectancy, and patient preference are not modeled here.</span>
+  </div>
+</div>
+
+<main class="layout">
+
+  <section class="intake" aria-label="Patient information">
+    <div class="intake-head">
+      <h2>Patient inputs</h2>
+      <button class="btn" id="resetBtn" type="button">Reset</button>
+    </div>
+    <div id="form"></div>
+  </section>
+
+  <section class="results" aria-live="polite">
+    <div class="res-head">
+      <div class="tally" id="tally"></div>
+      <div class="actions">
+        <button class="btn primary" id="copyBtn" type="button">Copy as note text</button>
+        <button class="btn" id="printBtn" type="button">Print</button>
+      </div>
+    </div>
+    <div id="out"></div>
+  </section>
+
+</main>
+
+<footer class="page">
+  <p>USPSTF content reflects the published A, B, and C recommendations as listed on uspreventiveservicestaskforce.org. Immunization logic follows the professional-society-endorsed adult schedule (AAFP 2026 / harmonized ACIP recommendations as of June 2025), with federal divergences flagged inline. Breast cancer screening coverage under the ACA is administered against the 2002 USPSTF statement, which differs from the 2024 clinical recommendation shown here.</p>
+</footer>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   STATE
+   ========================================================================= */
+const S = {
+  units:'us', ageVal:'', ageUnit:'y', sex:'',
+  ft:'', in:'', lb:'', cm:'', kg:'',
+  // reproductive
+  pregnant:false, ga:'', postpartum:false, couldPregnant:false, postmeno:false,
+  hysterectomy:false, rhNeg:false, preeclampsiaRisk:false, perinatalDepRisk:false,
+  // behaviour
+  tobacco:'never', packYears:'', quitYears:'',
+  sexuallyActive:false, stiRisk:false, hivRisk:false, drugInject:false,
+  // cardiometabolic
+  ascvd:false, htn:false, dm:false, dyslipidemia:false, risk10:'',
+  bleedRisk:false,
+  // conditions / exposures
+  immunocomp:false, hiv:false, chronicHeart:false, chronicLung:false,
+  chronicLiver:false, chronicKidney:false, asplenia:false, complement:false,
+  tbRisk:false, hbvRisk:false, hepARisk:false,
+  fairSkin:false, brcaHx:false, breastRisk:false, fallRisk:false,
+  pedsHighBMI:false, fluorideDeficient:false, tobaccoNaivePeds:true,
+  ltcResident:false, healthcareWorker:false, collegeDorm:false, msm:false,
+  noImmunityMMR:false, noImmunityVar:false
+};
+
+/* =========================================================================
+   DERIVED VALUES
+   ========================================================================= */
+function derive(){
+  const n = parseFloat(S.ageVal);
+  const ageY = isNaN(n) ? null : (S.ageUnit==='m' ? n/12 : n);
+  let bmi = null;
+  if(S.units==='us'){
+    const inches = (parseFloat(S.ft)||0)*12 + (parseFloat(S.in)||0);
+    const lb = parseFloat(S.lb);
+    if(inches>0 && lb>0) bmi = (lb/(inches*inches))*703;
+  } else {
+    const cm = parseFloat(S.cm), kg = parseFloat(S.kg);
+    if(cm>0 && kg>0) bmi = kg/Math.pow(cm/100,2);
+  }
+  return {
+    ageY,
+    ageKnown: ageY!==null,
+    bmi: bmi ? Math.round(bmi*10)/10 : null,
+    risk: S.risk10==='' ? null : parseFloat(S.risk10),
+    py: S.packYears==='' ? null : parseFloat(S.packYears),
+    qy: S.quitYears==='' ? null : parseFloat(S.quitYears),
+    ga: S.ga==='' ? null : parseFloat(S.ga),
+    F: S.sex==='F', M: S.sex==='M',
+    everSmoked: S.tobacco==='current' || S.tobacco==='former',
+    cvdRF: S.dyslipidemia || S.htn || S.dm || S.tobacco==='current',
+    chronicAny: S.chronicHeart||S.chronicLung||S.chronicLiver||S.chronicKidney||S.dm
+  };
+}
+
+/* =========================================================================
+   FORM SCHEMA  —  questions appear only when they can change the output
+   ========================================================================= */
+const A18 = d => d.ageY!==null && d.ageY>=18;
+const FEM = d => d.F;
+
+const GROUPS = [
+  {
+    id:'core', label:'Core — always required',
+    fields:[
+      {t:'age'},
+      {t:'seg', k:'sex', label:'Sex assigned at birth',
+        opts:[['F','Female'],['M','Male']],
+        hint:'Drives cervical, breast, prostate, AAA, and osteoporosis logic. For transgender and intersex patients, screen by organ inventory — run the tool twice if useful.'},
+      {t:'anthro'},
+      {t:'derived'}
+    ]
+  },
+  {
+    id:'repro', label:'Reproductive',
+    when:d => d.F && d.ageY!==null && d.ageY>=10 && d.ageY<=60,
+    fields:[
+      {t:'chk', k:'pregnant', label:'Currently pregnant'},
+      {t:'num', k:'ga', label:'Gestational age', unit:'weeks', when:()=>S.pregnant, min:0, max:44},
+      {t:'chk', k:'rhNeg', label:'Rh(D) negative, unsensitized', when:()=>S.pregnant},
+      {t:'chk', k:'preeclampsiaRisk', label:'High risk for preeclampsia',
+        sub:'Prior preeclampsia, multifetal gestation, chronic HTN, type 1/2 DM, renal disease, autoimmune disease', when:()=>S.pregnant},
+      {t:'chk', k:'perinatalDepRisk', label:'Increased risk of perinatal depression', when:()=>S.pregnant||S.postpartum},
+      {t:'chk', k:'postpartum', label:'Postpartum (within 12 months)', when:()=>!S.pregnant},
+      {t:'chk', k:'couldPregnant', label:'Could become or is planning to become pregnant', when:()=>!S.pregnant},
+      {t:'chk', k:'postmeno', label:'Postmenopausal', when:d=>!S.pregnant && d.ageY<65},
+      {t:'chk', k:'hysterectomy', label:'Hysterectomy with cervix removed, no history of CIN2+',
+        sub:'Suppresses the cervical cancer screening recommendation'}
+    ]
+  },
+  {
+    id:'repro2', label:'Reproductive',
+    when:d => d.F && d.ageY!==null && d.ageY>60,
+    fields:[
+      {t:'chk', k:'hysterectomy', label:'Hysterectomy with cervix removed, no history of CIN2+'}
+    ]
+  },
+  {
+    id:'tob', label:'Tobacco',
+    when:d => d.ageY!==null && d.ageY>=10,
+    fields:[
+      {t:'seg', k:'tobacco', label:'Tobacco use',
+        opts:[['never','Never'],['former','Former'],['current','Current']]},
+      {t:'num', k:'packYears', label:'Pack-years', unit:'pk-yr', when:d=>d.everSmoked, min:0, max:200,
+        hint:'Lung cancer screening threshold is 20 pack-years.'},
+      {t:'num', k:'quitYears', label:'Years since quitting', unit:'yr', when:()=>S.tobacco==='former', min:0, max:80}
+    ]
+  },
+  {
+    id:'sex', label:'Sexual health',
+    when:d => d.ageY!==null && d.ageY>=11,
+    fields:[
+      {t:'chk', k:'sexuallyActive', label:'Sexually active'},
+      {t:'chk', k:'msm', label:'Man who has sex with men', when:d=>d.M && S.sexuallyActive},
+      {t:'chk', k:'stiRisk', label:'Increased risk for STI',
+        sub:'New or multiple partners, partner with concurrent partners or an STI, inconsistent condom use, transactional sex, incarceration, high-prevalence community', when:()=>S.sexuallyActive},
+      {t:'chk', k:'hivRisk', label:'Increased risk of acquiring HIV',
+        sub:'Condomless sex with a partner of unknown or positive HIV status, recent bacterial STI, or shared injection equipment — this is the PrEP trigger'},
+      {t:'chk', k:'drugInject', label:'Injection drug use, current or past'}
+    ]
+  },
+  {
+    id:'cardio', label:'Cardiometabolic',
+    when:A18,
+    fields:[
+      {t:'chk', k:'ascvd', label:'Known atherosclerotic CVD',
+        sub:'Suppresses primary-prevention statin and aspirin logic — this tool covers primary prevention only'},
+      {t:'chk', k:'htn', label:'Diagnosed hypertension'},
+      {t:'chk', k:'dm', label:'Diagnosed diabetes'},
+      {t:'chk', k:'dyslipidemia', label:'Dyslipidemia'},
+      {t:'num', k:'risk10', label:'10-year ASCVD risk', unit:'%', min:0, max:100, step:'0.1',
+        when:d=>!S.ascvd && d.ageY>=40 && d.ageY<=79,
+        hint:'From the Pooled Cohort Equations or PREVENT. Splits statin into grade B (≥10%) versus grade C (7.5–9.9%).'},
+      {t:'chk', k:'bleedRisk', label:'Increased bleeding risk',
+        sub:'Suppresses the aspirin recommendation', when:d=>!S.ascvd && d.ageY>=40 && d.ageY<60}
+    ]
+  },
+  {
+    id:'cond', label:'Conditions and exposures',
+    when:d => d.ageKnown,
+    fields:[
+      {t:'chk', k:'immunocomp', label:'Immunocompromising condition or therapy'},
+      {t:'chk', k:'hiv', label:'HIV'},
+      {t:'chk', k:'chronicHeart', label:'Chronic heart disease', sub:'Excluding isolated hypertension'},
+      {t:'chk', k:'chronicLung', label:'Chronic lung or respiratory disease'},
+      {t:'chk', k:'chronicLiver', label:'Chronic liver disease'},
+      {t:'chk', k:'chronicKidney', label:'Chronic kidney disease or dialysis'},
+      {t:'chk', k:'asplenia', label:'Asplenia, sickle cell disease, or complement deficiency'},
+      {t:'chk', k:'tbRisk', label:'Increased risk of latent TB',
+        sub:'Born in or resident of a high-prevalence country, or contact in a congregate setting'},
+      {t:'chk', k:'hbvRisk', label:'Increased risk of hepatitis B',
+        sub:'Born in a high-prevalence region, unvaccinated with a high-prevalence-region parent, HIV, injection drug use, incarceration, household or sexual contact'},
+      {t:'chk', k:'hepARisk', label:'Increased risk of hepatitis A',
+        sub:'Travel to an endemic area, homelessness, occupational exposure, or close contact with an international adoptee'},
+      {t:'chk', k:'ltcResident', label:'Long-term care resident'},
+      {t:'chk', k:'healthcareWorker', label:'Health care personnel'},
+      {t:'chk', k:'collegeDorm', label:'First-year college student in residential housing', when:d=>d.ageY>=16&&d.ageY<=24}
+    ]
+  },
+  {
+    id:'cancer', label:'Cancer risk',
+    when:d => d.ageKnown && d.ageY>=0.5,
+    fields:[
+      {t:'chk', k:'fairSkin', label:'Fair skin type', when:d=>d.ageY>=0.5},
+      {t:'chk', k:'brcaHx', label:'Personal or family history of breast, ovarian, tubal, or peritoneal cancer, or BRCA-associated ancestry', when:FEM},
+      {t:'chk', k:'breastRisk', label:'Increased risk of breast cancer and low risk of medication adverse effects', when:d=>d.F&&d.ageY>=35}
+    ]
+  },
+  {
+    id:'geri', label:'Function',
+    when:d => d.ageY!==null && d.ageY>=65,
+    fields:[
+      {t:'chk', k:'fallRisk', label:'Increased risk of falls',
+        sub:'History of falls, mobility or gait problems, or reduced strength or balance'}
+    ]
+  },
+  {
+    id:'peds', label:'Pediatric',
+    when:d => d.ageY!==null && d.ageY<18,
+    fields:[
+      {t:'chk', k:'pedsHighBMI', label:'BMI at or above the 95th percentile for age and sex', when:d=>d.ageY>=6},
+      {t:'chk', k:'fluorideDeficient', label:'Water supply deficient in fluoride', when:d=>d.ageY<5}
+    ]
+  }
+];
+
+/* =========================================================================
+   USPSTF RULES  —  A, B, C
+   ========================================================================= */
+const U = 'https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/';
+const R = [
+
+/* ---- A ---- */
+{g:'A',y:2018,t:'Cervical cancer screening',
+ a:'Cytology every 3 years (21–29). At 30–65: cytology every 3 years, hrHPV alone every 5 years, or hrHPV plus cytology every 5 years.',
+ i:'Every 3–5 years depending on modality',u:U+'cervical-cancer-screening',
+ w:d=>d.F && d.ageY>=21 && d.ageY<=65 && !S.hysterectomy, c:d=>['female','age '+fmt(d.ageY)]},
+
+{g:'A',y:2021,t:'Colorectal cancer screening',
+ a:'Screen with a stool-based test, colonoscopy, CT colonography, or flexible sigmoidoscopy.',
+ i:'Interval depends on modality — FIT annually, colonoscopy every 10 years',u:U+'colorectal-cancer-screening',
+ w:d=>d.ageY>=50 && d.ageY<=75, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'A',y:2023,t:'Folic acid supplementation',
+ a:'Daily supplement containing 0.4–0.8 mg (400–800 mcg) of folic acid.',
+ i:'Daily, at least 1 month before conception through the first 2–3 months of pregnancy',u:U+'folic-acid-for-the-prevention-of-neural-tube-defects-preventive-medication',
+ w:d=>d.F && (S.couldPregnant || S.pregnant), c:()=>['can become pregnant']},
+
+{g:'A',y:2019,t:'Hepatitis B screening in pregnancy',
+ a:'HBsAg testing at the first prenatal visit.',i:'Each pregnancy',
+ u:U+'hepatitis-b-virus-infection-in-pregnant-women-screening',
+ w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'A',y:2019,t:'HIV screening',
+ a:'Screen for HIV infection.',i:'At least once; repeat based on ongoing risk',
+ u:U+'human-immunodeficiency-virus-hiv-infection-screening',
+ w:d=>(d.ageY>=15 && d.ageY<=65) || S.hivRisk, c:d=>d.ageY>=15&&d.ageY<=65?['age '+fmt(d.ageY)]:['increased HIV risk']},
+
+{g:'A',y:2019,t:'HIV screening in pregnancy',
+ a:'Screen all pregnant persons, including those presenting in labor or at delivery with unknown status.',
+ i:'Each pregnancy',u:U+'human-immunodeficiency-virus-hiv-infection-screening',
+ w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'A',y:2021,t:'Hypertension screening',
+ a:'Office blood pressure measurement, with out-of-office measurement to confirm before starting treatment.',
+ i:'Annually if 40+ or at increased risk; every 3–5 years if 18–39 at low risk',
+ u:U+'hypertension-in-adults-screening',
+ w:d=>d.ageY>=18 && !S.htn, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'A',y:2019,t:'Ocular prophylaxis for gonococcal ophthalmia neonatorum',
+ a:'Prophylactic topical ocular erythromycin for all newborns.',i:'Once, within 24 hours of birth',
+ u:U+'ocular-prophylaxis-for-gonococcal-ophthalmia-neonatorum-preventive-medication',
+ w:d=>d.ageY<=0.084, c:()=>['newborn']},
+
+{g:'A',y:2023,t:'HIV preexposure prophylaxis (PrEP)',
+ a:'Prescribe effective antiretroviral therapy for PrEP.',i:'Ongoing, with monitoring per CDC guidance',
+ u:U+'prevention-of-human-immunodeficiency-virus-hiv-infection-pre-exposure-prophylaxis',
+ w:()=>S.hivRisk, c:()=>['increased HIV risk']},
+
+{g:'A',y:2004,t:'Rh(D) blood typing and antibody testing',
+ a:'Rh(D) typing and antibody testing at the first pregnancy-related visit.',i:'First prenatal visit',
+ u:U+'rh-d-incompatibility-screening', w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'A',y:2025,t:'Syphilis screening in pregnancy',
+ a:'Early universal screening; if not screened early, screen at the first available opportunity.',
+ i:'Early in pregnancy',u:U+'syphilis-infection-in-pregnancy-screening',
+ w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'A',y:2022,t:'Syphilis screening, nonpregnant',
+ a:'Screen persons at increased risk for syphilis infection.',i:'Based on ongoing risk',
+ u:U+'syphilis-infection-nonpregnant-adults-adolescents-screening',
+ w:()=>!S.pregnant && (S.stiRisk || S.msm || S.hivRisk || S.hiv), c:()=>['increased STI risk']},
+
+{g:'A',y:2021,t:'Tobacco cessation',
+ a:'Ask about tobacco use, advise cessation, and provide behavioral interventions plus FDA-approved pharmacotherapy.',
+ i:'Every visit',u:U+'tobacco-use-in-adults-and-pregnant-women-counseling-and-interventions',
+ w:d=>d.ageY>=18 && S.tobacco==='current' && !S.pregnant, c:()=>['current tobacco use']},
+
+{g:'A',y:2021,t:'Tobacco cessation in pregnancy',
+ a:'Ask about tobacco use, advise cessation, and provide behavioral interventions. Pharmacotherapy evidence in pregnancy is insufficient.',
+ i:'Every visit',u:U+'tobacco-use-in-adults-and-pregnant-women-counseling-and-interventions',
+ w:()=>S.pregnant && S.tobacco==='current', c:()=>['pregnant','current tobacco use']},
+
+/* ---- B ---- */
+{g:'B',y:2019,t:'Abdominal aortic aneurysm screening',
+ a:'One-time screening with abdominal ultrasonography.',i:'Once',
+ u:U+'abdominal-aortic-aneurysm-screening',
+ w:d=>d.M && d.ageY>=65 && d.ageY<=75 && d.everSmoked, c:d=>['male','age '+fmt(d.ageY),'ever smoked']},
+
+{g:'B',y:2023,t:'Anxiety disorder screening, adults',
+ a:'Screen for anxiety disorders, including in pregnant and postpartum persons.',i:'Optimal interval not established',
+ u:U+'anxiety-adults-screening',
+ w:d=>d.ageY>=19 && d.ageY<=64, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2022,t:'Anxiety screening, children and adolescents',
+ a:'Screen for anxiety.',i:'Optimal interval not established',
+ u:U+'screening-anxiety-children-adolescents',
+ w:d=>d.ageY>=8 && d.ageY<=18, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2021,t:'Low-dose aspirin for preeclampsia prevention',
+ a:'81 mg/day after 12 weeks of gestation.',i:'Daily from 12 weeks until delivery',
+ u:U+'low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication',
+ w:()=>S.pregnant && S.preeclampsiaRisk, c:()=>['pregnant','high preeclampsia risk']},
+
+{g:'B',y:2019,t:'Asymptomatic bacteriuria screening',
+ a:'Screen with urine culture.',i:'Once in pregnancy, typically 12–16 weeks',
+ u:U+'asymptomatic-bacteriuria-in-adults-screening', w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'B',y:2019,t:'BRCA risk assessment and genetic counseling',
+ a:'Assess with a brief familial risk assessment tool; refer for genetic counseling and, if indicated, testing.',
+ i:'Once, repeat if family history changes',
+ u:U+'brca-related-cancer-risk-assessment-genetic-counseling-and-genetic-testing',
+ w:d=>d.F && S.brcaHx, c:()=>['female','personal or family history']},
+
+{g:'B',y:2019,t:'Risk-reducing medication for breast cancer',
+ a:'Offer tamoxifen, raloxifene, or an aromatase inhibitor.',i:'Typically a 5-year course',
+ u:U+'breast-cancer-medications-for-risk-reduction',
+ w:d=>d.F && d.ageY>=35 && S.breastRisk, c:d=>['female','age '+fmt(d.ageY),'increased breast cancer risk']},
+
+{g:'B',y:2024,t:'Breast cancer screening',
+ a:'Biennial screening mammography.',i:'Every 2 years',u:U+'breast-cancer-screening',
+ w:d=>d.F && d.ageY>=40 && d.ageY<=74, c:d=>['female','age '+fmt(d.ageY)]},
+
+{g:'B',y:2025,t:'Breastfeeding support',
+ a:'Provide interventions or referrals during pregnancy and after birth.',i:'Pregnancy and postpartum',
+ u:U+'breastfeeding-primary-care-interventions',
+ w:()=>S.pregnant||S.postpartum, c:()=>[S.pregnant?'pregnant':'postpartum']},
+
+{g:'B',y:2021,t:'Chlamydia screening',
+ a:'Screen sexually active women 24 or younger, and those 25 or older at increased risk.',
+ i:'Annually, or more often with ongoing risk',u:U+'chlamydia-and-gonorrhea-screening',
+ w:d=>d.F && S.sexuallyActive && (d.ageY<=24 || S.stiRisk),
+ c:d=>['female','sexually active', d.ageY<=24 ? 'age '+fmt(d.ageY) : 'increased risk']},
+
+{g:'B',y:2021,t:'Gonorrhea screening',
+ a:'Screen sexually active women 24 or younger, and those 25 or older at increased risk.',
+ i:'Annually, or more often with ongoing risk',u:U+'chlamydia-and-gonorrhea-screening',
+ w:d=>d.F && S.sexuallyActive && (d.ageY<=24 || S.stiRisk),
+ c:d=>['female','sexually active', d.ageY<=24 ? 'age '+fmt(d.ageY) : 'increased risk']},
+
+{g:'B',y:2021,t:'Colorectal cancer screening, 45–49',
+ a:'Screen with a stool-based test, colonoscopy, CT colonography, or flexible sigmoidoscopy.',
+ i:'Interval depends on modality',u:U+'colorectal-cancer-screening',
+ w:d=>d.ageY>=45 && d.ageY<=49, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2023,t:'Depression and suicide risk screening, adults',
+ a:'Screen for depression, including in pregnant, postpartum, and older adults.',i:'Optimal interval not established',
+ u:U+'screening-depression-suicide-risk-adults',
+ w:d=>d.ageY>=19, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2022,t:'Depression screening, adolescents',
+ a:'Screen for major depressive disorder.',i:'Optimal interval not established',
+ u:U+'screening-depression-suicide-risk-children-adolescents',
+ w:d=>d.ageY>=12 && d.ageY<=18, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2024,t:'Exercise interventions to prevent falls',
+ a:'Recommend exercise interventions for community-dwelling adults at increased fall risk.',
+ i:'Ongoing programs, typically supervised',
+ u:U+'falls-prevention-community-dwelling-older-adults-interventions',
+ w:d=>d.ageY>=65 && S.fallRisk, c:d=>['age '+fmt(d.ageY),'increased fall risk']},
+
+{g:'B',y:2021,t:'Gestational diabetes screening',
+ a:'Screen at 24 weeks of gestation or later.',i:'Once, at or after 24 weeks',
+ u:U+'gestational-diabetes-screening',
+ w:d=>S.pregnant && (d.ga===null || d.ga>=24), c:d=>['pregnant', d.ga!==null?d.ga+' weeks':'gestational age not entered']},
+
+{g:'B',y:2020,t:'Diet and physical activity counseling',
+ a:'Offer or refer to behavioral counseling to promote a healthy diet and physical activity.',
+ i:'Ongoing; multi-session interventions are most effective',
+ u:U+'healthy-diet-and-physical-activity-counseling-adults-with-high-risk-of-cvd',
+ w:d=>d.ageY>=18 && d.cvdRF, c:()=>['CVD risk factor present']},
+
+{g:'B',y:2021,t:'Healthy weight gain counseling in pregnancy',
+ a:'Offer behavioral counseling to promote healthy gestational weight gain.',i:'Throughout pregnancy',
+ u:U+'healthy-weight-and-weight-gain-during-pregnancy-behavioral-counseling-interventions',
+ w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'B',y:2020,t:'Hepatitis B screening',
+ a:'Screen adolescents and adults at increased risk with HBsAg.',i:'Periodically with ongoing risk',
+ u:U+'hepatitis-b-virus-infection-screening',
+ w:d=>d.ageY>=10 && (S.hbvRisk||S.drugInject||S.hiv||S.msm), c:()=>['increased HBV risk']},
+
+{g:'B',y:2020,t:'Hepatitis C screening',
+ a:'Screen with anti-HCV antibody, with reflex to HCV RNA.',i:'Once; periodically with ongoing risk',
+ u:U+'hepatitis-c-screening',
+ w:d=>d.ageY>=18 && d.ageY<=79, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2024,t:'Intensive behavioral intervention for high BMI',
+ a:'Provide or refer to comprehensive, intensive behavioral interventions.',
+ i:'26 or more contact hours over 2–12 months',
+ u:U+'obesity-in-children-and-adolescents-screening',
+ w:d=>d.ageY>=6 && d.ageY<18 && S.pedsHighBMI, c:d=>['age '+fmt(d.ageY),'BMI ≥95th percentile']},
+
+{g:'B',y:2023,t:'Hypertensive disorders of pregnancy screening',
+ a:'Blood pressure measurement at every prenatal visit.',i:'Throughout pregnancy',
+ u:U+'hypertensive-disorders-pregnancy-screening', w:()=>S.pregnant, c:()=>['pregnant']},
+
+{g:'B',y:2025,t:'Intimate partner violence screening',
+ a:'Screen women of reproductive age and connect to ongoing support services.',i:'Periodically',
+ u:U+'intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening',
+ w:d=>d.F && d.ageY>=15 && d.ageY<=49, c:d=>['female','age '+fmt(d.ageY)]},
+
+{g:'B',y:2023,t:'Latent tuberculosis screening',
+ a:'Screen with an interferon-gamma release assay or tuberculin skin test.',i:'Based on ongoing exposure risk',
+ u:U+'latent-tuberculosis-infection-screening',
+ w:d=>d.ageY>=18 && S.tbRisk, c:()=>['increased TB risk']},
+
+{g:'B',y:2021,t:'Lung cancer screening',
+ a:'Annual low-dose CT. Discontinue once 15 years have passed since quitting, or when life expectancy or surgical candidacy is substantially limited.',
+ i:'Annually',u:U+'lung-cancer-screening',
+ w:d=>d.ageY>=50 && d.ageY<=80 && d.py!==null && d.py>=20 &&
+       (S.tobacco==='current' || (S.tobacco==='former' && d.qy!==null && d.qy<15)),
+ c:d=>['age '+fmt(d.ageY), d.py+' pack-years', S.tobacco==='current'?'current smoker':'quit '+d.qy+'y ago']},
+
+{g:'B',y:2025,t:'Osteoporosis screening, 65 and older',
+ a:'Screen with bone measurement testing.',i:'Optimal interval not established',
+ u:U+'osteoporosis-screening',
+ w:d=>d.F && d.ageY>=65, c:d=>['female','age '+fmt(d.ageY)]},
+
+{g:'B',y:2025,t:'Osteoporosis screening, postmenopausal under 65',
+ a:'Screen if at increased fracture risk by clinical risk assessment, such as FRAX or OST.',
+ i:'Optimal interval not established',u:U+'osteoporosis-screening',
+ w:d=>d.F && d.ageY<65 && S.postmeno, c:d=>['female','postmenopausal','age '+fmt(d.ageY)]},
+
+{g:'B',y:2019,t:'Perinatal depression prevention',
+ a:'Provide or refer to counseling interventions such as cognitive behavioral therapy or interpersonal therapy.',
+ i:'Pregnancy and postpartum',u:U+'perinatal-depression-preventive-interventions',
+ w:()=>(S.pregnant||S.postpartum) && S.perinatalDepRisk, c:()=>['increased perinatal depression risk']},
+
+{g:'B',y:2021,t:'Prediabetes and type 2 diabetes screening',
+ a:'Screen with fasting glucose, HbA1c, or OGTT. Refer patients with prediabetes to effective preventive interventions.',
+ i:'Every 3 years is reasonable',u:U+'screening-for-prediabetes-and-type-2-diabetes',
+ w:d=>d.ageY>=35 && d.ageY<=70 && d.bmi!==null && d.bmi>=25 && !S.dm,
+ c:d=>['age '+fmt(d.ageY),'BMI '+d.bmi]},
+
+{g:'B',y:2021,t:'Fluoride varnish',
+ a:'Apply fluoride varnish to the primary teeth.',i:'Every 3–6 months from primary tooth eruption',
+ u:U+'prevention-of-dental-caries-in-children-younger-than-age-5-years-screening-and-interventions1',
+ w:d=>d.ageY>=0.5 && d.ageY<5, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2021,t:'Oral fluoride supplementation',
+ a:'Prescribe oral fluoride supplementation.',i:'Daily from age 6 months',
+ u:U+'prevention-of-dental-caries-in-children-younger-than-age-5-years-screening-and-interventions1',
+ w:d=>d.ageY>=0.5 && d.ageY<5 && S.fluorideDeficient, c:()=>['fluoride-deficient water']},
+
+{g:'B',y:2004,t:'Repeat Rh(D) antibody testing',
+ a:'Repeat antibody testing at 24–28 weeks unless the biological father is known to be Rh(D) negative.',
+ i:'Once, at 24–28 weeks',u:U+'rh-d-incompatibility-screening',
+ w:()=>S.pregnant && S.rhNeg, c:()=>['pregnant','Rh(D) negative']},
+
+{g:'B',y:2020,t:'STI behavioral counseling',
+ a:'Provide behavioral counseling — the strongest evidence supports 30 or more minutes of contact time.',
+ i:'Ongoing',u:U+'sexually-transmitted-infections-behavioral-counseling',
+ w:d=>S.sexuallyActive && (d.ageY<18 || S.stiRisk || S.msm || S.hivRisk),
+ c:d=>d.ageY<18?['sexually active adolescent']:['sexually active','increased STI risk']},
+
+{g:'B',y:2018,t:'Skin cancer prevention counseling',
+ a:'Counsel about minimizing UV radiation exposure.',i:'Periodically',u:U+'skin-cancer-counseling',
+ w:d=>d.ageY>=0.5 && d.ageY<=24 && S.fairSkin, c:d=>['age '+fmt(d.ageY),'fair skin']},
+
+{g:'B',y:2022,t:'Statin for primary CVD prevention',
+ a:'Prescribe a moderate-intensity statin.',i:'Daily, ongoing',u:U+'statin-use-in-adults-preventive-medication',
+ w:d=>!S.ascvd && d.ageY>=40 && d.ageY<=75 && d.cvdRF && d.risk!==null && d.risk>=10,
+ c:d=>['age '+fmt(d.ageY),'CVD risk factor','10-yr risk '+d.risk+'%']},
+
+{g:'B',y:2020,t:'Tobacco use prevention, children and adolescents',
+ a:'Provide education or brief counseling to prevent initiation.',i:'Periodically',
+ u:U+'tobacco-and-nicotine-use-prevention-in-children-and-adolescents-primary-care-interventions',
+ w:d=>d.ageY>=5 && d.ageY<=18 && S.tobacco==='never', c:d=>['age '+fmt(d.ageY),'never used tobacco']},
+
+{g:'B',y:2018,t:'Unhealthy alcohol use screening',
+ a:'Screen with AUDIT-C or the single-item NIAAA question, and provide brief behavioral counseling if positive.',
+ i:'Periodically',u:U+'unhealthy-alcohol-use-in-adolescents-and-adults-screening-and-behavioral-counseling-interventions',
+ w:d=>d.ageY>=18, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2020,t:'Unhealthy drug use screening',
+ a:'Screen by asking questions about drug use. Screening means asking, not testing biological specimens.',
+ i:'Periodically',u:U+'drug-use-illicit-screening',
+ w:d=>d.ageY>=18, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2017,t:'Vision screening',
+ a:'Screen at least once to detect amblyopia or its risk factors.',i:'At least once between ages 3 and 5',
+ u:U+'vision-in-children-ages-6-months-to-5-years-screening',
+ w:d=>d.ageY>=3 && d.ageY<=5, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'B',y:2018,t:'Intensive behavioral intervention for obesity',
+ a:'Offer or refer to intensive, multicomponent behavioral interventions.',
+ i:'12 or more sessions in the first year',u:U+'obesity-in-adults-interventions',
+ w:d=>d.ageY>=18 && d.bmi!==null && d.bmi>=30, c:d=>['BMI '+d.bmi]},
+
+/* ---- C ---- */
+{g:'C',y:2019,t:'Abdominal aortic aneurysm screening, never-smokers',
+ a:'Selectively offer one-time ultrasonography based on family history, other risk factors, and patient preference.',
+ i:'Once, if offered',u:U+'abdominal-aortic-aneurysm-screening',
+ w:d=>d.M && d.ageY>=65 && d.ageY<=75 && S.tobacco==='never', c:d=>['male','age '+fmt(d.ageY),'never smoked']},
+
+{g:'C',y:2021,t:'Colorectal cancer screening, 76–85',
+ a:'Individualize the decision, weighing overall health, prior screening history, and preference. Never-screened patients are more likely to benefit.',
+ i:'Individualized',u:U+'colorectal-cancer-screening',
+ w:d=>d.ageY>=76 && d.ageY<=85, c:d=>['age '+fmt(d.ageY)]},
+
+{g:'C',y:2018,t:'Prostate cancer screening (PSA)',
+ a:'Individualize the decision after discussing benefits and harms. Do not screen at 70 or older.',
+ i:'If screening, typically every 2–4 years',u:U+'prostate-cancer-screening',
+ w:d=>d.M && d.ageY>=55 && d.ageY<=69, c:d=>['male','age '+fmt(d.ageY)]},
+
+{g:'C',y:2022,t:'Statin for primary CVD prevention, intermediate risk',
+ a:'Selectively offer a moderate-intensity statin; the net benefit at this risk level is small.',
+ i:'Daily, ongoing',u:U+'statin-use-in-adults-preventive-medication',
+ w:d=>!S.ascvd && d.ageY>=40 && d.ageY<=75 && d.cvdRF && d.risk!==null && d.risk>=7.5 && d.risk<10,
+ c:d=>['age '+fmt(d.ageY),'10-yr risk '+d.risk+'%']},
+
+{g:'C',y:2022,t:'Low-dose aspirin for primary CVD prevention',
+ a:'Individualize the decision to start low-dose aspirin; the net benefit is small and decreases with age. Do not initiate at 60 or older.',
+ i:'Daily, if started',u:U+'aspirin-to-prevent-cardiovascular-disease-preventive-medication',
+ w:d=>!S.ascvd && !S.bleedRisk && d.ageY>=40 && d.ageY<60 && d.risk!==null && d.risk>=10,
+ c:d=>['age '+fmt(d.ageY),'10-yr risk '+d.risk+'%']},
+
+{g:'C',y:2022,t:'Diet and physical activity counseling, no CVD risk factors',
+ a:'Selectively offer behavioral counseling based on the patient\u2019s circumstances and readiness.',
+ i:'Ongoing',u:U+'healthy-lifestyle-and-physical-activity-for-cvd-prevention-adults-without-known-risk-factors-behavioral-counseling',
+ w:d=>d.ageY>=18 && !d.cvdRF && !S.ascvd && !(d.bmi!==null && d.bmi>=30),
+ c:()=>['no CVD risk factors recorded']},
+
+{g:'C',y:2018,t:'Skin cancer prevention counseling, adults over 24',
+ a:'Selectively offer counseling about minimizing UV exposure based on individual risk.',
+ i:'Periodically',u:U+'skin-cancer-counseling',
+ w:d=>d.ageY>24 && S.fairSkin, c:d=>['age '+fmt(d.ageY),'fair skin']},
+
+{g:'C',y:2024,t:'Multifactorial fall prevention interventions',
+ a:'Individualize the decision to offer multifactorial intervention — initial assessment plus tailored components.',
+ i:'Individualized',u:U+'falls-prevention-community-dwelling-older-adults-interventions',
+ w:d=>d.ageY>=65 && S.fallRisk, c:d=>['age '+fmt(d.ageY),'increased fall risk']}
+];
+
+/* =========================================================================
+   IMMUNIZATION RULES
+   ========================================================================= */
+const DIV_COVID = 'CDC currently classifies COVID-19 vaccination as shared clinical decision-making for adults. AAFP, ACP, and IDSA continue to recommend it more broadly. Confirm which schedule your practice and payers follow.';
+const DIV_PEDS  = 'The January 2026 CDC childhood schedule downgraded several routine vaccines to risk-based or shared decision-making. A federal court stayed that schedule on 16 March 2026. AAP\u2019s 2026 schedule, endorsed by 12 other organizations, retains the routine recommendations shown here.';
+
+const V = [
+{t:'Influenza',tag:'routine',
+ a:d=>d.ageY>=65
+   ? 'One dose annually. High-dose (HD-IIV3), recombinant (RIV3), or adjuvanted (aIIV3) is preferred at 65 and older.'
+   : 'One dose annually.',
+ w:d=>d.ageY>=0.5, note:d=>S.pregnant?'Inactivated influenza vaccine is recommended in any trimester. Avoid LAIV in pregnancy.':null},
+
+{t:'COVID-19',tag:'scdm',
+ a:()=>'One or more doses of the current season\u2019s vaccine, per the schedule your practice follows.',
+ w:d=>d.ageY>=0.5, div:DIV_COVID},
+
+{t:'Tdap / Td',tag:'routine',
+ a:d=>S.pregnant
+   ? 'One dose of Tdap during each pregnancy, preferably at 27–36 weeks, regardless of prior Tdap history.'
+   : 'One dose of Tdap if never received, then Td or Tdap every 10 years.',
+ w:d=>d.ageY>=7,
+ note:d=>d.ageY>=11&&d.ageY<=12?'Routine adolescent Tdap dose is due at 11–12 years.':null},
+
+{t:'RSV',tag:'routine',
+ a:d=>d.ageY>=75
+   ? 'Single lifetime dose if not previously vaccinated.'
+   : 'Single lifetime dose if not previously vaccinated and at increased risk of severe RSV disease.',
+ w:d=>d.ageY>=50,
+ note:d=>d.ageY>=50&&d.ageY<75?'At 50–74 this is risk-based: chronic cardiopulmonary disease, diabetes with complications, severe obesity, immunocompromise, or long-term care residence.':null},
+
+{t:'RSV in pregnancy',tag:'routine',
+ a:()=>'One dose of Abrysvo at 32–36 weeks of gestation, September through January, if not previously vaccinated in a prior pregnancy.',
+ w:d=>S.pregnant && (d.ga===null || (d.ga>=32 && d.ga<=36))},
+
+{t:'Recombinant zoster (Shingrix)',tag:'routine',
+ a:()=>'Two doses, 2–6 months apart. If immunocompromised, the interval may be shortened to 1–2 months.',
+ w:d=>d.ageY>=50 || (d.ageY>=19 && (S.immunocomp||S.hiv)),
+ note:d=>S.pregnant?'Consider deferring until after pregnancy.':null},
+
+{t:'Pneumococcal',tag:'routine',
+ a:d=>d.ageY>=50
+   ? 'PCV20 or PCV21 alone, or PCV15 followed by PPSV23, if not previously vaccinated. Prior-dose history changes the sequence.'
+   : 'Indicated at 19–49 because of a risk condition. PCV20 or PCV21 alone, or PCV15 followed by PPSV23.',
+ w:d=>d.ageY>=50 || (d.ageY>=19 && (d.chronicAny||S.immunocomp||S.hiv||S.asplenia||S.tobacco==='current'||S.chronicLiver)),
+ note:()=>'Use PneumoRecs VaxAdvisor to resolve sequence when prior doses are known.'},
+
+{t:'HPV',tag:'routine',
+ a:d=>d.ageY<=26
+   ? 'Routine series. Two doses if started before the 15th birthday, three doses if started at 15 or later or if immunocompromised.'
+   : 'Shared clinical decision-making at 27–45 years. Three-dose series if given.',
+ w:d=>d.ageY>=9 && d.ageY<=45,
+ note:d=>d.ageY>=11&&d.ageY<=12?'Routine age for series initiation is 11–12 years, and may start at 9.':null},
+
+{t:'Hepatitis B',tag:'routine',
+ a:d=>d.ageY<60
+   ? 'Complete a 2-, 3-, or 4-dose series depending on product, if not previously vaccinated.'
+   : 'Series indicated based on risk factors, or on patient request.',
+ w:d=>d.ageY>=0 && (d.ageY<60 || S.hbvRisk || S.drugInject || S.chronicLiver || S.dm || S.hiv || S.msm || S.chronicKidney),
+ div:d=>d.ageY<1?DIV_PEDS:null},
+
+{t:'Hepatitis A',tag:'risk',
+ a:()=>'Two- or three-dose series depending on product.',
+ w:d=>d.ageY>=19 && (S.chronicLiver||S.drugInject||S.msm||S.hiv||S.hepARisk),
+ note:()=>'Also indicated for travel to endemic areas, homelessness, occupational exposure, and close contact with an international adoptee.'},
+
+{t:'MMR',tag:'routine',
+ a:d=>d.ageY<19
+   ? 'Two doses: 12\u201315 months and 4\u20136 years.'
+   : 'One or two doses if there is no presumptive evidence of immunity. Two doses for health care personnel, students in postsecondary education, and international travelers.',
+ w:d=>d.ageY>=1 && !S.pregnant && !S.immunocomp,
+ note:d=>d.ageY<19?null:(S.healthcareWorker?'Health care personnel born in 1957 or later need documented two doses or serologic immunity.':'Adults born before 1957 are generally considered immune, except health care personnel.')},
+
+{t:'Varicella',tag:'routine',
+ a:d=>d.ageY<19
+   ? 'Two doses: 12–15 months and 4–6 years.'
+   : 'Two doses, 4–8 weeks apart, if there is no evidence of immunity.',
+ w:d=>d.ageY>=1 && !S.pregnant && !S.immunocomp},
+
+{t:'Meningococcal ACWY',tag:'risk',
+ a:d=>(d.ageY>=11&&d.ageY<=18)
+   ? 'Routine dose at 11–12 years with a booster at 16 years.'
+   : 'Indicated by risk condition or exposure. Booster every 5 years while risk persists.',
+ w:d=>(d.ageY>=11&&d.ageY<=18)||S.asplenia||S.hiv||S.collegeDorm,
+ div:d=>d.ageY<19?DIV_PEDS:null},
+
+{t:'Meningococcal B',tag:'scdm',
+ a:d=>S.asplenia
+   ? 'Indicated by risk condition. Two- or three-dose series depending on product, with boosters while risk persists.'
+   : 'Shared clinical decision-making at 16–23 years, preferred at 16–18.',
+ w:d=>(d.ageY>=16&&d.ageY<=23)||S.asplenia},
+
+{t:'Haemophilus influenzae type b',tag:'risk',
+ a:()=>'One dose for anatomic or functional asplenia, or three doses following hematopoietic stem cell transplant.',
+ w:d=>d.ageY>=19 && S.asplenia},
+
+{t:'DTaP',tag:'routine',
+ a:()=>'Five-dose series at 2, 4, and 6 months, 15\u201318 months, and 4\u20136 years.',
+ w:d=>d.ageY<7},
+
+{t:'Polio (IPV)',tag:'routine',
+ a:d=>d.ageY<7 ? 'Four-dose series at 2 and 4 months, 6\u201318 months, and 4\u20136 years.' : 'Confirm the four-dose series is complete; use the catch-up schedule if it is not.',
+ w:d=>d.ageY<19},
+
+{t:'Haemophilus influenzae type b (childhood)',tag:'routine',
+ a:()=>'Three- or four-dose series depending on product: 2, 4, (6) months and a booster at 12\u201315 months.',
+ w:d=>d.ageY<5},
+
+{t:'Pneumococcal conjugate (childhood)',tag:'routine',
+ a:()=>'Four-dose series at 2, 4, and 6 months and 12\u201315 months.',
+ w:d=>d.ageY<5},
+
+{t:'Rotavirus',tag:'routine',
+ a:()=>'Two- or three-dose oral series depending on product, starting at 2 months. Do not initiate after 15 weeks of age; complete by 8 months.',
+ w:d=>d.ageY<0.7, div:DIV_PEDS},
+
+{t:'Hepatitis A (childhood)',tag:'routine',
+ a:d=>d.ageY<3 ? 'Two-dose series beginning at 12\u201323 months, doses at least 6 months apart.' : 'Confirm the two-dose series is complete; catch-up is recommended through age 18.',
+ w:d=>d.ageY>=1 && d.ageY<19, div:DIV_PEDS},
+
+{t:'Mpox',tag:'risk',
+ a:()=>'Two-dose JYNNEOS series, 4 weeks apart.',
+ w:d=>d.ageY>=18 && (S.msm||S.hivRisk||S.hiv) }
+];
+
+/* =========================================================================
+   NEAR MISSES  —  what almost fired, and by how much
+   ========================================================================= */
+function nearMisses(d){
+  const n=[];
+  if(d.ageY===null) return n;
+  if(d.ageY>=50 && d.ageY<=80 && d.everSmoked && d.py!==null && d.py<20 && d.py>0)
+    n.push('<b>Lung cancer screening</b> — '+d.py+' pack-years recorded; the threshold is 20.');
+  if(d.ageY>=40 && d.ageY<45)
+    n.push('<b>Colorectal cancer screening</b> — begins at 45 unless there is a family history or other high-risk indication, which this tool does not model.');
+  if(d.F && d.ageY>=35 && d.ageY<40)
+    n.push('<b>Breast cancer screening</b> — biennial mammography begins at 40.');
+  if(d.ageY>=30 && d.ageY<35 && d.bmi!==null && d.bmi>=25)
+    n.push('<b>Diabetes screening</b> — overweight is present but the age threshold is 35.');
+  if(d.ageY>=35 && d.ageY<=70 && d.bmi!==null && d.bmi<25 && d.bmi>0)
+    n.push('<b>Diabetes screening</b> — BMI '+d.bmi+' is below the 25 threshold. Consider screening at a lower BMI in Asian American patients.');
+  if(d.M && d.ageY>=60 && d.ageY<65 && d.everSmoked)
+    n.push('<b>AAA screening</b> — one-time ultrasound is recommended from age 65.');
+  if(!S.ascvd && d.ageY>=40 && d.ageY<=75 && d.cvdRF && d.risk===null)
+    n.push('<b>Statin therapy</b> — a CVD risk factor is present but no 10-year risk was entered, so grade B versus C cannot be resolved.');
+  if(d.ageY>80 && d.everSmoked)
+    n.push('<b>Lung cancer screening</b> — stops at age 80.');
+  if(d.M && d.ageY>=70)
+    n.push('<b>PSA screening</b> — the USPSTF recommends against screening at 70 and older (grade D).');
+  return n;
+}
+
+/* =========================================================================
+   RENDER
+   ========================================================================= */
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function fmt(a){
+  if(a===null) return '?';
+  if(a<1) return Math.round(a*12)+' mo';
+  return (Math.round(a*10)/10)+'y';
+}
+
+let shownCount = 0, totalCount = 0;
+let lastSig = null;
+
+/* Numeric fields are text inputs with a numeric keypad rather than <input type=number>.
+   Number inputs report selectionStart as null, which makes caret restoration impossible
+   and also let scroll wheels silently change values. */
+function sanitizeNum(v){
+  v = v.replace(/[^0-9.]/g,'');
+  const i = v.indexOf('.');
+  if(i !== -1) v = v.slice(0,i+1) + v.slice(i+1).replace(/\./g,'');
+  return v;
+}
+function numInput(k, extra){
+  return '<input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="6"'+
+         ' data-k="'+k+'" data-num="1" value="'+esc(S[k])+'"'+(extra||'')+'>';
+}
+function derivedHTML(d){
+  return 'age <b>'+(d.ageKnown?fmt(d.ageY):'\u2014')+'</b> &nbsp;\u00b7&nbsp; BMI <b>'+
+         (d.bmi!==null?d.bmi:'\u2014')+'</b>';
+}
+
+/* Which questions are currently visible. If this is unchanged, the form does not
+   need rebuilding — which is what keeps the caret where the user left it. */
+function visSignature(d){
+  const sig = [S.units];
+  GROUPS.forEach(g=>{
+    const gv = !g.when || g.when(d);
+    g.fields.forEach(f=>{
+      sig.push(gv && (!f.when || f.when(d)) ? '1' : '0');
+    });
+  });
+  return sig.join('');
+}
+
+function buildForm(){
+  const d = derive();
+  const host = document.getElementById('form');
+  shownCount = 0; totalCount = 0;
+  let html = '';
+
+  GROUPS.forEach(g=>{
+    const gv = !g.when || g.when(d);
+    let inner = '';
+    g.fields.forEach(f=>{
+      if(f.t==='chk'||f.t==='num'||f.t==='seg') totalCount++;
+      const fv = !f.when || f.when(d);
+      if(!gv || !fv) return;
+      if(f.t==='chk'||f.t==='num'||f.t==='seg') shownCount++;
+      inner += field(f,d);
+    });
+    if(gv && inner){
+      html += '<div class="qgroup reveal"><span class="glabel">'+esc(g.label)+'</span>'+inner+'</div>';
+    }
+  });
+
+  host.innerHTML = html;
+  bind();
+  lastSig = visSignature(d);
+
+  document.getElementById('counter').innerHTML =
+    '<b>'+shownCount+'</b> of '+totalCount+' questions relevant<br>'+
+    (d.ageKnown && S.sex ? 'the rest cannot change this answer' : 'enter age and sex to begin');
+}
+
+function field(f,d){
+  if(f.t==='age'){
+    return '<div class="field"><label class="flabel" for="ageVal">Age</label>'+
+      '<div class="row2">'+numInput('ageVal',' id="ageVal" placeholder="e.g. 58"')+
+      '<select data-k="ageUnit"><option value="y"'+(S.ageUnit==='y'?' selected':'')+'>years</option>'+
+      '<option value="m"'+(S.ageUnit==='m'?' selected':'')+'>months</option></select></div></div>';
+  }
+  if(f.t==='anthro'){
+    const u = '<div class="field"><label class="flabel">Units</label><div class="seg" data-seg="units">'+
+      '<button type="button" data-v="us" aria-pressed="'+(S.units==='us')+'">ft / lb</button>'+
+      '<button type="button" data-v="metric" aria-pressed="'+(S.units==='metric')+'">cm / kg</button></div></div>';
+    const hint = '<p class="hint">Only needed to trigger BMI-dependent recommendations. Leave blank to skip them.</p></div>';
+    const body = S.units==='us'
+      ? '<div class="field"><label class="flabel">Height and weight</label><div class="row3">'+
+        numInput('ft',' placeholder="ft"')+numInput('in',' placeholder="in"')+numInput('lb',' placeholder="lb"')+
+        '</div>'+hint
+      : '<div class="field"><label class="flabel">Height and weight</label><div class="row2">'+
+        numInput('cm',' placeholder="cm"')+numInput('kg',' placeholder="kg"')+
+        '</div>'+hint;
+    return u+body;
+  }
+  if(f.t==='derived'){
+    return '<div class="field"><div class="derived" id="derivedOut">'+derivedHTML(derive())+'</div></div>';
+  }
+  if(f.t==='seg'){
+    let b = f.opts.map(o=>'<button type="button" data-v="'+o[0]+'" aria-pressed="'+(S[f.k]===o[0])+'">'+esc(o[1])+'</button>').join('');
+    return '<div class="field"><label class="flabel">'+esc(f.label)+'</label><div class="seg" data-seg="'+f.k+'">'+b+'</div>'+
+      (f.hint?'<p class="hint">'+esc(f.hint)+'</p>':'')+'</div>';
+  }
+  if(f.t==='num'){
+    return '<div class="field"><label class="flabel">'+esc(f.label)+(f.unit?' <span class="mono" style="color:var(--faint);font-weight:400">('+esc(f.unit)+')</span>':'')+'</label>'+
+      numInput(f.k)+
+      (f.hint?'<p class="hint">'+esc(f.hint)+'</p>':'')+'</div>';
+  }
+  if(f.t==='chk'){
+    return '<label class="chk"><input type="checkbox" data-k="'+f.k+'"'+(S[f.k]?' checked':'')+'>'+
+      '<span>'+esc(f.label)+(f.sub?'<small>'+esc(f.sub)+'</small>':'')+'</span></label>';
+  }
+  return '';
+}
+
+function bind(){
+  document.querySelectorAll('#form [data-k]').forEach(el=>{
+    const k = el.dataset.k;
+    if(el.type==='checkbox'){
+      el.onchange = ()=>{ S[k]=el.checked; run(); };
+    } else if(el.tagName==='SELECT'){
+      el.onchange = ()=>{ S[k]=el.value; run(); };
+    } else {
+      el.oninput = ()=>{
+        if(el.dataset.num){
+          const before = el.value;
+          const clean  = sanitizeNum(before);
+          if(clean !== before){
+            const caret = Math.max(0,(el.selectionStart||0) - (before.length - clean.length));
+            el.value = clean;
+            try{ el.setSelectionRange(caret,caret); }catch(e){}
+          }
+        }
+        S[k] = el.value;
+        run();
+      };
+    }
+  });
+  document.querySelectorAll('#form [data-seg]').forEach(seg=>{
+    const k = seg.dataset.seg;
+    seg.querySelectorAll('button').forEach(b=>{
+      b.onclick = ()=>{ S[k]=b.dataset.v; run(true); };
+    });
+  });
+}
+
+function run(force){
+  const d = derive();
+  if(force || visSignature(d) !== lastSig){
+    /* The visible question set changed, so the form must be rebuilt. Capture the
+       caret first and put it back afterwards. */
+    const a  = document.activeElement;
+    const k  = (a && a.dataset) ? a.dataset.k : null;
+    let ss = null, se = null;
+    if(k){ try{ ss = a.selectionStart; se = a.selectionEnd; }catch(e){} }
+
+    buildForm();
+
+    if(k){
+      const el = document.querySelector('#form [data-k="'+k+'"]');
+      if(el){
+        el.focus();
+        if(ss !== null && el.setSelectionRange){
+          try{ el.setSelectionRange(ss, se === null ? ss : se); }catch(e){}
+        }
+      }
+    }
+  } else {
+    /* Nothing appeared or disappeared — leave the DOM alone so typing is not disturbed. */
+    const dv = document.getElementById('derivedOut');
+    if(dv) dv.innerHTML = derivedHTML(d);
+  }
+  renderResults();
+}
+
+function renderResults(){
+  const d = derive();
+  const out = document.getElementById('out');
+  const tally = document.getElementById('tally');
+
+  if(!d.ageKnown || !S.sex){
+    tally.innerHTML = '<div><span class="n">—</span><span class="l">awaiting input</span></div>';
+    out.innerHTML = '<div class="empty">Enter age and sex assigned at birth. Everything else appears only if it can change the result.</div>';
+    return;
+  }
+
+  const fired = R.filter(r=>{ try{ return d.ageKnown && r.w(d); }catch(e){ return false; } });
+  const byGrade = {A:[],B:[],C:[]};
+  fired.forEach(r=>byGrade[r.g].push(r));
+  const vacs = V.filter(v=>{ try{ return d.ageKnown && v.w(d); }catch(e){ return false; } });
+
+  tally.innerHTML =
+    '<div><span class="n">'+byGrade.A.length+'</span><span class="l">Grade A</span></div>'+
+    '<div><span class="n">'+byGrade.B.length+'</span><span class="l">Grade B</span></div>'+
+    '<div><span class="n">'+byGrade.C.length+'</span><span class="l">Grade C</span></div>'+
+    '<div><span class="n">'+vacs.length+'</span><span class="l">Vaccines</span></div>';
+
+  let h = '';
+
+  h += '<div class="section"><h2>Screening, counseling, and preventive medication <span class="ct">USPSTF</span></h2>'+
+       '<p class="snote">Grade A and B services carry no cost sharing under the ACA. Grade C services are recommended selectively, based on professional judgment and patient preference.</p>';
+
+  ['A','B','C'].forEach(g=>{
+    byGrade[g].forEach(r=>{
+      let chips=[];
+      try{ chips = r.c(d)||[]; }catch(e){}
+      h += '<article class="rec" data-grade="'+g+'">'+
+        '<div class="rail"><span class="g">'+g+'</span><span class="yr">'+r.y+'</span></div>'+
+        '<div class="rbody"><h3>'+esc(r.t)+'</h3><p class="act">'+esc(r.a)+'</p>'+
+        (r.i?'<p class="ivl">'+esc(r.i)+'</p>':'')+
+        '<div class="trigger"><span class="tl">triggered by</span>'+
+        chips.map(c=>'<span class="chip">'+esc(c)+'</span>').join('')+'</div>'+
+        '<a class="src" href="'+r.u+'" target="_blank" rel="noopener">USPSTF statement &#8599;</a>'+
+        '</div></article>';
+    });
+  });
+  if(!fired.length) h += '<div class="empty">No A, B, or C recommendations fire for this profile.</div>';
+  h += '</div>';
+
+  /* immunizations */
+  h += '<div class="section"><h2>Immunizations <span class="ct">'+(d.ageY<19?'AAP / AAFP 2026':'AAFP 2026 adult schedule')+'</span></h2>'+
+       '<p class="snote">Shown as due-if-not-current. This tool does not track prior doses, so confirm history against the registry before ordering. Federal and professional-society guidance currently differ on several vaccines; those are flagged.</p>';
+
+  if(d.ageY<19){
+    h += '<div class="divergence" style="margin-bottom:12px">'+DIV_PEDS+' For patients under 19, work from the full AAP schedule and catch-up tables rather than this summary.</div>';
+  }
+
+  vacs.forEach(v=>{
+    const note = typeof v.note==='function' ? v.note(d) : v.note;
+    const div  = typeof v.div==='function' ? v.div(d) : v.div;
+    const tagLabel = v.tag==='routine'?'Recommended':v.tag==='risk'?'Risk-based':'Shared decision';
+    h += '<div class="vac"><h3>'+esc(v.t)+' <span class="tag '+v.tag+'">'+tagLabel+'</span></h3>'+
+      '<p>'+esc(typeof v.a==='function'?v.a(d):v.a)+'</p>'+
+      (note?'<p style="margin-top:6px;font-size:12.5px;color:var(--muted)">'+esc(note)+'</p>':'')+
+      (div?'<div class="divergence"><b>Guidance differs.</b> '+div+'</div>':'')+
+      '</div>';
+  });
+  if(!vacs.length) h += '<div class="empty">No vaccines indicated by the inputs entered.</div>';
+  h += '</div>';
+
+  /* near misses */
+  const nm = nearMisses(d);
+  if(nm.length){
+    h += '<div class="section"><h2>Close, but not triggered <span class="ct">'+nm.length+'</span></h2>'+
+      '<p class="snote">Worth a look — these fall just outside a threshold, or depend on information this tool does not collect.</p>';
+    nm.forEach(x=>h+='<div class="near">'+x+'</div>');
+    h += '</div>';
+  }
+
+  /* what is not modelled */
+  h += '<div class="section"><h2>What this does not do</h2>'+
+    '<details class="foot"><summary>Limits worth knowing before you use the output</summary><div class="dbody">'+
+    '<ul>'+
+    '<li>No prior-results memory. It says what a patient qualifies for, not what is overdue.</li>'+
+    '<li>No life-expectancy adjustment. Several recommendations assume 10 or more years of remaining life.</li>'+
+    '<li>No high-risk pathways outside USPSTF scope — Lynch syndrome, prior CIN2+, dense breasts, family history of early colorectal cancer, and similar all need specialty guidelines.</li>'+
+    '<li>USPSTF only. ACS, ACOG, AUA, ADA, and specialty societies differ, sometimes substantially, on breast, cervical, prostate, and lung screening.</li>'+
+    '<li>Grade D and I statements are not shown, so the absence of an item here is not a recommendation against it.</li>'+
+    '<li>Pediatric immunization is summarized, not computed. Catch-up dosing requires the full schedule.</li>'+
+    '</ul></div></details></div>';
+
+  out.innerHTML = h;
+}
+
+/* =========================================================================
+   EXPORT
+   ========================================================================= */
+const SHORT = {
+  "Cervical cancer screening":"Cervical Ca Screen",
+  "Colorectal cancer screening":"CRC Screen",
+  "Colorectal cancer screening, 45–49":"CRC Screen",
+  "Colorectal cancer screening, 76–85":"CRC Screen",
+  "Folic acid supplementation":"Folic Acid",
+  "Hepatitis B screening in pregnancy":"HBV",
+  "HIV screening":"HIV",
+  "HIV screening in pregnancy":"HIV",
+  "Hypertension screening":"HTN",
+  "Ocular prophylaxis for gonococcal ophthalmia neonatorum":"Ocular Ppx",
+  "HIV preexposure prophylaxis (PrEP)":"PrEP",
+  "Rh(D) blood typing and antibody testing":"Rh(D) Type + Ab",
+  "Syphilis screening in pregnancy":"Syphilis",
+  "Syphilis screening, nonpregnant":"Syphilis",
+  "Tobacco cessation":"Tobacco Cessation",
+  "Tobacco cessation in pregnancy":"Tobacco Cessation",
+  "Abdominal aortic aneurysm screening":"AAA Screen",
+  "Abdominal aortic aneurysm screening, never-smokers":"AAA Screen",
+  "Anxiety disorder screening, adults":"Anxiety",
+  "Anxiety screening, children and adolescents":"Anxiety",
+  "Low-dose aspirin for preeclampsia prevention":"ASA (preeclampsia ppx)",
+  "Asymptomatic bacteriuria screening":"Asx Bacteriuria",
+  "BRCA risk assessment and genetic counseling":"BRCA Risk Assessment",
+  "Risk-reducing medication for breast cancer":"Breast Ca Risk-Reducing Med",
+  "Breast cancer screening":"Mammogram",
+  "Breastfeeding support":"Breastfeeding Support",
+  "Chlamydia screening":"Chlamydia",
+  "Gonorrhea screening":"Gonorrhea",
+  "Depression and suicide risk screening, adults":"Depression",
+  "Depression screening, adolescents":"Depression",
+  "Exercise interventions to prevent falls":"Falls: Exercise",
+  "Gestational diabetes screening":"GDM Screen",
+  "Diet and physical activity counseling":"Diet/Activity Counseling",
+  "Diet and physical activity counseling, no CVD risk factors":"Diet/Activity Counseling",
+  "Healthy weight gain counseling in pregnancy":"Gestational Wt Counseling",
+  "Hepatitis B screening":"HBV",
+  "Hepatitis C screening":"HCV",
+  "Intensive behavioral intervention for high BMI":"Wt Mgmt (peds)",
+  "Hypertensive disorders of pregnancy screening":"HDP Screen",
+  "Intimate partner violence screening":"IPV",
+  "Latent tuberculosis screening":"LTBI",
+  "Lung cancer screening":"Lung Ca Screen (LDCT)",
+  "Osteoporosis screening, 65 and older":"Osteoporosis (DXA)",
+  "Osteoporosis screening, postmenopausal under 65":"Osteoporosis (DXA)",
+  "Perinatal depression prevention":"Perinatal Depression Ppx",
+  "Prediabetes and type 2 diabetes screening":"Prediabetes/T2DM",
+  "Fluoride varnish":"Fluoride Varnish",
+  "Oral fluoride supplementation":"Fluoride Supplement",
+  "Repeat Rh(D) antibody testing":"Rh(D) Ab Repeat",
+  "STI behavioral counseling":"STI Counseling",
+  "Skin cancer prevention counseling":"Skin Ca Counseling",
+  "Skin cancer prevention counseling, adults over 24":"Skin Ca Counseling",
+  "Statin for primary CVD prevention":"Statin",
+  "Statin for primary CVD prevention, intermediate risk":"Statin",
+  "Tobacco use prevention, children and adolescents":"Tobacco Prevention",
+  "Unhealthy alcohol use screening":"Alcohol Use",
+  "Unhealthy drug use screening":"Drug Use",
+  "Vision screening":"Vision",
+  "Intensive behavioral intervention for obesity":"Wt Mgmt",
+  "Prostate cancer screening (PSA)":"PSA",
+  "Low-dose aspirin for primary CVD prevention":"ASA (primary prevention)",
+  "Multifactorial fall prevention interventions":"Falls: Multifactorial"
+};
+const VSHORT = {
+  "Tdap / Td":"Tdap/Td",
+  "Recombinant zoster (Shingrix)":"Zoster (RZV)",
+  "Meningococcal ACWY":"MenACWY",
+  "Meningococcal B":"MenB",
+  "Haemophilus influenzae type b":"Hib",
+  "Haemophilus influenzae type b (childhood)":"Hib",
+  "Polio (IPV)":"IPV",
+  "Pneumococcal conjugate (childhood)":"PCV",
+  "Hepatitis A (childhood)":"Hepatitis A"
+};
+
+function asText(){
+  const d = derive();
+  if(!d.ageKnown||!S.sex) return 'No patient data entered.';
+
+  const fired = [];
+  ['A','B','C'].forEach(g=>R.forEach(r=>{
+    if(r.g!==g) return;
+    try{ if(r.w(d)) fired.push(r); }catch(e){}
+  }));
+  const vacs = V.filter(v=>{ try{ return v.w(d); }catch(e){ return false; } });
+
+  const L = [];
+  const seen = new Set();
+
+  L.push('Screenings');
+  fired.forEach(r=>{
+    const lab = SHORT[r.t] || r.t;
+    if(seen.has(lab)) return;
+    seen.add(lab);
+    L.push(lab + ': ');
+  });
+  if(seen.size===0) L.push('None indicated');
+
+  L.push('');
+  L.push('Recommended Immunizations:');
+  const vseen = new Set();
+  vacs.forEach(v=>{
+    const lab = VSHORT[v.t] || v.t;
+    if(vseen.has(lab)) return;
+    vseen.add(lab);
+    L.push(lab);
+  });
+  if(vseen.size===0) L.push('None indicated');
+
+  return L.join('\n');
+}
+
+document.getElementById('copyBtn').onclick = async ()=>{
+  const t = asText();
+  try{ await navigator.clipboard.writeText(t); toast('Copied to clipboard'); }
+  catch(e){
+    const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);
+    ta.select();document.execCommand('copy');ta.remove();toast('Copied to clipboard');
+  }
+};
+document.getElementById('printBtn').onclick = ()=>window.print();
+document.getElementById('resetBtn').onclick = ()=>{
+  Object.keys(S).forEach(k=>{
+    if(typeof S[k]==='boolean') S[k]=false;
+    else if(k==='units') S[k]='us';
+    else if(k==='ageUnit') S[k]='y';
+    else if(k==='tobacco') S[k]='never';
+    else S[k]='';
+  });
+  S.tobaccoNaivePeds=true;
+  run(true);
+};
+function toast(m){
+  const t=document.createElement('div');t.className='toast';t.textContent=m;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),1800);
+}
+
+run();
+</script>
+</body>
+</html>
